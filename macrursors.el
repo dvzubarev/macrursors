@@ -124,7 +124,8 @@ and re-enable them in `macrursors-post-finish-hook'."
 	                cursor-type))
          (ov (make-overlay pos (if (eq cursor-type 'bar)
                                    pos
-                                 (1+ pos)))))
+                                 (1+ pos))
+                           nil t)))
     (overlay-put ov 'face
 		 (cond
 		  ((not macrursors-match-cursor-style) 'macrursors-cursor-face)
