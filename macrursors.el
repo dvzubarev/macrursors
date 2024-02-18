@@ -647,14 +647,16 @@ beginning and ending positions."
 		    (move-to-column col)
 		    (not (= (point) curr)))
                   (>= (point) start))
-	(macrursors--add-overlay-at-point (point))))
+	(when (not (and (eolp) (bolp)))
+          (macrursors--add-overlay-at-point (point)))))
     (save-excursion
       (while (and (let ((curr (point)))
 		    (forward-line 1)
 		    (move-to-column col)
 		    (not (= (point) curr)))
 		  (<= (point) end))
-	(macrursors--add-overlay-at-point (point))))
+        (when (not (and (eolp) (bolp)))
+	  (macrursors--add-overlay-at-point (point)))))
     (setq macrursors--instance 'line)
     (unless macrursors-mode
       (setq macrursors--last-inst-range (list (point) (point))))
