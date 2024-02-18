@@ -370,6 +370,7 @@ beginning and ending positions."
         (macrursors-start))
        ; No region or symbol-name, mark line
        (t (macrursors-mark-next-line arg search-end))))
+    (when (use-region-p) (deactivate-mark))
     (goto-char (macrursors--cursor-pos beg end))))
 
 (defun macrursors--mark-previous-instance-of (string &optional start)
@@ -409,6 +410,7 @@ beginning and ending positions."
         (macrursors-start))
        ; No region or symbol-name, mark line
        (t (macrursors-mark-previous-line arg search-start))))
+    (when (use-region-p) (deactivate-mark))
     (goto-char (macrursors--cursor-pos beg end))))
 
 (defun macrursors--forward-number ()
